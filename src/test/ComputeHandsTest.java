@@ -11,6 +11,8 @@ import model.calcs.Order;
  */
 public class ComputeHandsTest {
     public static void main(String args[]){
+    	
+    		System.out.println("hooray");
         int split = 0;
         int total = 100000;
 
@@ -123,7 +125,9 @@ public class ComputeHandsTest {
                 high++;
             }
         }
-
+        
+        String ttl = "Total Number of Runs: "+total;
+        	
         System.out.println("Total Number of Runs: "+total);
         System.out.println("Number of Splits: "+split);
         System.out.println("Straight Flushes: "+sf);
