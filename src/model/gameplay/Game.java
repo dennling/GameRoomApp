@@ -3,7 +3,6 @@ package model.gameplay;
 import model.Card;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.stream.IntStream;
 
 /**
@@ -18,6 +17,7 @@ public class Game {
     private int currBet;
     private int pot[];
     private ArrayList<Card> deck;
+    private ArrayList<Card> comCards;
 
     public Game(ArrayList<String> names, int startingChips, int bb, int sb){
         initPlayers(names, startingChips);
@@ -27,12 +27,24 @@ public class Game {
         this.currBet = bb;
         this.deck = Card.deck();
         this.pot = new int[players.size()-1];
-        this.deal();
+        this.comCards = new ArrayList<>();
+        this.dealHands();
     }
 
-    public void deal(){
+    public void dealHands(){
         for(Player p: players){
             p.setHand(deck.remove(0),deck.remove(0));
+        }
+    }
+
+    public void dealCommunity(boolean flop){
+        if(flop){
+            this.comCards.add(deck.remove(0));
+            this.comCards.add(deck.remove(0));
+            this.comCards.add(deck.remove(0));
+        }
+        else{
+            this.comCards.add(deck.remove(0));
         }
     }
 
@@ -50,7 +62,8 @@ public class Game {
             activePlayers.add(p);
         }
         this.deck = Card.deck();
-        this.deal();
+        this.resetPot();
+        this.dealHands();
     }
 
     public void resetPot(){
@@ -77,6 +90,13 @@ public class Game {
         return currBet;
     }
 
+    public ArrayList<Card> getComCards(){
+        return comCards;
+    }
+
+    public ArrayList<Card> getDeck(){
+        return deck;
+    }
 
     //split pots???
     public void awardPot(Player[] ps){
