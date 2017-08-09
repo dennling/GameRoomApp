@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Poker Room</title>
+	<meta charset="UTF-8">
+	<title>Poker Room</title>
+	<link rel="stylesheet" type="text/css" href="homestyle.css"/>
 </head>
 <body>
-	<h1>Welcome to the Poker Room.</h1>
+<div class="toptitle">
+	<h1>Poker Room</h1>
+</div>
+<div class="entry1">
+	<text>Name:</text>
+	<input type = "text" name = "name">
+</div>
+<div class="entry2">
+	<text>Code:</text>
+	<input type = "text" name = "code">
+</div>
+<div class="btn">
 	<form action="DealServlet" method="post">
-		<input type="submit" value="Deal" />
+		<input type="submit" value="Join" class="btn"/>
 	</form>
+</div>
+<div class="btn">
+	<!--        <form action="CreateRoom" method="post">-->
+	<input class="btn" type="submit" value="Create Room"/>
+	<!--        </form>-->
+</div>
 </body>
 </html>
