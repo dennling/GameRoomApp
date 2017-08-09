@@ -11,6 +11,27 @@ public class Player {
     public Player(String name, int chips, String[] hand){
         this.name = name;
         this.chips = chips;
-        this.hand = hand;
+        hand = new String[2];
+    }
+
+    public void setHand(String one, String two){
+        hand[0] = one;
+        hand[1] = two;
+    }
+
+    public int getChips(){
+        return chips;
+    }
+
+    public void setChips(int chips){
+        this.chips = chips;
+    }
+
+    public void bet(){
+
+    }
+
+    public void fold(){
+
     }
 }

@@ -32,15 +32,24 @@ public class Game {
         }
     }
 
+    public void resetPot(){
+        pot = new int[players.size()-1];
+    }
+
     public int getTotalPot(){
         return IntStream.of(pot).sum();
     }
 
-    public void bet(int amt, int position){
+    public void bet(Player p, int amt, int position){
         pot[position] += amt;
+        p.setChips(p.getChips()-amt);
         if (position == 0) {
             currBet = amt;
         }
+    }
+
+    public void fold(Player p){
+        activePlayers.remove(p);
     }
 
     public int getCurrBet(){
