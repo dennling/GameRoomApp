@@ -1,0 +1,31 @@
+body{
+    font-family: monospace;
+    text-align: center;
+}
+
+h1{
+    position: relative;
+    text-align: center;
+    font-size: 350%;
+    //background-color: cornflowerblue;
+    padding-bottom: 25px;
+    padding-top: 25px;
+}
+
+.entry1{
+    padding-top: 25px;
+    //background-color: palegreen;
+    padding-bottom: 5px;
+}
+
+.entry2{
+    padding-top: 5px;
+    //background-color: palegreen;
+    padding-bottom: 25px;
+}
+
+.btn{
+    padding-top: 20px;
+    //font-family: monospace;
+    //background-color: darkturquoise
+}
