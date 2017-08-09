@@ -1,6 +1,9 @@
 package model.gameplay;
 
+import model.Card;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.stream.IntStream;
 
 /**
@@ -14,6 +17,7 @@ public class Game {
     private int smallBlind;
     private int currBet;
     private int pot[];
+    private ArrayList<Card> deck;
 
     public Game(ArrayList<String> names, int startingChips, int bb, int sb){
         initPlayers(names, startingChips);
@@ -21,15 +25,32 @@ public class Game {
         this.bigBlind = bb;
         this.smallBlind = sb;
         this.currBet = bb;
+        this.deck = Card.deck();
         this.pot = new int[players.size()-1];
+        this.deal();
+    }
+
+    public void deal(){
+        for(Player p: players){
+            p.setHand(deck.remove(0),deck.remove(0));
+        }
     }
 
     private void initPlayers(ArrayList<String> names, int startingChips){
         for(String name: names){
-            Player p = new Player(name,startingChips,new String[]{"",""});
+            Player p = new Player(name,startingChips, this);
             players.add(p);
             activePlayers.add(p);
         }
+    }
+
+    public void nextHand(){
+        activePlayers.clear();
+        for(Player p: players){
+            activePlayers.add(p);
+        }
+        this.deck = Card.deck();
+        this.deal();
     }
 
     public void resetPot(){
@@ -54,5 +75,13 @@ public class Game {
 
     public int getCurrBet(){
         return currBet;
+    }
+
+
+    //split pots???
+    public void awardPot(Player[] ps){
+        for(Player p: ps){
+            p.setChips(p.getChips()+(this.getTotalPot()/ps.length));
+        }
     }
 }
